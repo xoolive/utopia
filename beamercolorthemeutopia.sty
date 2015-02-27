@@ -1,4 +1,7 @@
-% Beamer mtheme
+% Beamer theme utopia, originally mtheme
+% Xavier Olive, 2015
+
+% Original notice
 %
 % Copyright 2014 Matthias Vogelgesang
 % Licensed under CC-BY-SA 4.0 International.
@@ -7,7 +10,7 @@
 % you can find at https://github.com/hsrmbeamertheme/hsrmbeamertheme.
 %
 
-\ProvidesPackage{beamercolorthememetropolis}
+\ProvidesPackage{beamercolorthemeutopia}
 
 
 %}}}
@@ -18,7 +21,7 @@
 \DeclareOptionBeamer{blockbg}{\@beamer@metropolis@blockbgtrue}
 
 \DeclareOptionBeamer*{%
-  \PackageWarning{beamercolorthememetropolis}{Unknown option `\CurrentOption'}%
+  \PackageWarning{beamercolorthemeutopia}{Unknown option `\CurrentOption'}%
 }
 
 \ProcessOptionsBeamer
@@ -33,6 +36,15 @@
 
 \definecolor{mLightBrown}{HTML}{EB811B}
 \definecolor{mMediumBrown}{HTML}{C87A2F}
+
+\definecolor{urlColor}{HTML}{2F3E70}
+
+\definecolor{mLightGreen}{HTML}{255A66}
+
+\hypersetup{colorlinks,
+    linkcolor=urlColor,citecolor=urlColor,
+    filecolor=black,urlcolor=urlColor
+}
 
 \setbeamercolor{palette primary}{fg=mDarkTeal, bg=black!2}
 \setbeamercolor{palette secondary}{fg=white, bg=mDarkTeal}
@@ -52,6 +64,7 @@
 
 \setbeamercolor{normal text}{fg=black!97}
 \setbeamercolor{alerted text}{fg=mLightBrown}
+\setbeamercolor{example text}{fg=mLightGreen}
 
 \setbeamercolor{footnote}{fg=mDarkTeal!50}
 \setbeamercolor{footnote mark}{fg=.}

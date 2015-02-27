@@ -4,7 +4,7 @@ AUX = demo.aux
 TEXC := xelatex
 TEXC_OPTS += -shell-escape
 TEXMFHOME = $(shell kpsewhich -var-value=TEXMFHOME)
-INSTALL_DIR = $(TEXMFHOME)/tex/latex/mtheme
+INSTALL_DIR = $(TEXMFHOME)/tex/latex/utopia
 
 .PHONY: clean install
 
@@ -13,7 +13,7 @@ all: $(PDF)
 $(AUX):
 	$(TEXC) $(TEXC_OPTS) $(SRC)
 
-$(PDF): beamerthemem.sty $(AUX) $(SRC)
+$(PDF): beamerthemeutopia.sty $(AUX) $(SRC)
 	$(TEXC) $(TEXC_OPTS) $(SRC)
 
 clean:

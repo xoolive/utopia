@@ -1,4 +1,7 @@
-% Beamer mtheme
+% Beamer theme utopia, originally mtheme
+% Xavier Olive, 2015
+
+% Original notice
 %
 % Copyright 2014 Matthias Vogelgesang
 % Licensed under CC-BY-SA 4.0 International.
@@ -7,14 +10,14 @@
 % you can find at https://github.com/hsrmbeamertheme/hsrmbeamertheme.
 %
 
-\ProvidesPackage{beamerfontthememetropolis}
+\ProvidesPackage{beamerfontthemeutopia}
 
 \RequirePackage[no-math]{fontspec}
 
 
 \defaultfontfeatures{Mapping=tex-text}
 \setsansfont[BoldFont={Fira Sans}]{Fira Sans Light}
-\setmonofont{Fira Mono}
+\setmonofont[Scale=0.9]{Fira Mono}
 \newfontfamily\ExtraLight{Fira Sans ExtraLight}
 \newfontfamily\Light{Fira Sans Light}
 \newfontfamily\Book{Fira Sans}
@@ -25,6 +28,8 @@
 \setbeamerfont{title}{family=\Book, size=\Large}
 \setbeamerfont{author}{family=\ExtraLight, size=\small}
 \setbeamerfont{date}{family=\ExtraLight, size=\small}
+
+\setbeamerfont{alerted text}{family=\Book}
 
 \setbeamerfont{section title}{family=\Book, size=\Large}
 

@@ -1,4 +1,7 @@
-% Beamer mtheme
+% Beamer theme utopia, originally mtheme
+% Xavier Olive, 2015
+
+% Original notice
 %
 % Copyright 2014 Matthias Vogelgesang
 % Licensed under CC-BY-SA 4.0 International.
@@ -7,7 +10,7 @@
 % you can find at https://github.com/hsrmbeamertheme/hsrmbeamertheme.
 %
 
-\ProvidesPackage{beamerthemem}
+\ProvidesPackage{beamerthemeutopia}
 
 %{{{ --- Options ----------------------
 
@@ -23,7 +26,7 @@
 \DeclareOptionBeamer{usetitleprogressbar}{\@useTitleProgressBartrue}
 \DeclareOptionBeamer{protectframetitle}{\@protectFrameTitletrue}
 \DeclareOptionBeamer{blockbg}{%
-  \PassOptionsToPackage{blockbg}{beamercolorthememetropolis}%
+  \PassOptionsToPackage{blockbg}{beamercolorthemeutopia}%
 }
 \DeclareOptionBeamer{nooffset}{\setlength{\@mtheme@voffset}{0em}}
 
@@ -47,8 +50,41 @@
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{calc}
 
-\usecolortheme{metropolis}
-\usefonttheme{metropolis}
+\usecolortheme{utopia}
+\usefonttheme{utopia}
+
+\addtobeamertemplate{block example begin} {
+    \tikz[remember picture, overlay]
+    \node[anchor=south west, xshift=-1.5ex, yshift=-.5em] (blockbegin) {};
+    \vspace{-1em}
+} { }
+
+\addtobeamertemplate{block example end} {
+    \tikz[remember picture, overlay]
+    \node[anchor=south west, xshift=-1.5ex, yshift=1em] (blockend) {};
+    \begin{tikzpicture}[remember picture, overlay]
+        \path [line width=0.3mm, example text.fg, fill=example text.fg]
+        (blockbegin.north west) edge (blockend.south west);
+%   \shade[left color=example text.fg, right color=bg] (blockend.south west)
+%         rectangle ++(\textwidth/3, 0.3mm);
+    \end{tikzpicture} } {}
+
+
+\addtobeamertemplate{block alerted begin} {
+    \tikz[remember picture, overlay]
+    \node[anchor=south west, xshift=-1.5ex, yshift=-.5em] (blockbegin) {};
+    \vspace{-1em}
+} { }
+
+\addtobeamertemplate{block alerted end} {
+    \tikz[remember picture, overlay]
+    \node[anchor=south west, xshift=-1.5ex, yshift=1em] (blockend) {};
+    \begin{tikzpicture}[remember picture, overlay]
+        \path [line width=0.3mm, alerted text.fg, fill=alerted text.fg]
+        (blockbegin.north west) edge (blockend.south west);
+%   \shade[left color=alerted text.fg, right color=bg] (blockend.south west)
+%         rectangle ++(\textwidth/3, 0.3mm);
+    \end{tikzpicture} } {}
 
 %}}}
 %{{{ --- Titlepage --------------------
@@ -118,16 +154,29 @@
     \multiply\progressbar@tmpdim by 100
 
     \makebox[\textwidth][c]{
-      \begin{tikzpicture}[tight background]
 
-        \node[anchor=west, fg, inner sep=0pt] at (0pt, 0pt) {\insertsectionHEAD};
 
-        \draw[anchor=west, fg!20, fill=fg!20, inner sep=0pt]
-        (2pt, -16pt) rectangle ++ (\progressbar@pbwd, \progressbar@pbht);
+    \begin{tikzpicture}[tight background]
 
-        \draw[anchor=west, fg, fill=fg, inner sep=0pt]
-        (2pt, -16pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
-      \end{tikzpicture}%
+      \node[anchor=west, white, inner sep=0pt] at (0pt, 0pt) {\insertsectionHEAD};
+
+      \draw[anchor=west, mDarkBrown, fill=mDarkBrown, inner sep=0pt]
+      (2pt, -16pt) rectangle ++ (\progressbar@pbwd, \progressbar@pbht);
+
+      \draw[anchor=west, mMediumBrown, fill=mMediumBrown, inner sep=0pt]
+      (2pt, -16pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
+    \end{tikzpicture}%
+
+%       \begin{tikzpicture}[tight background]
+%
+%         \node[anchor=west, fg, inner sep=0pt] at (0pt, 0pt) {\insertsectionHEAD};
+%
+%         \draw[anchor=west, fg!20, fill=fg!20, inner sep=0pt]
+%         (2pt, -16pt) rectangle ++ (\progressbar@pbwd, \progressbar@pbht);
+%
+%         \draw[anchor=west, fg, fill=fg, inner sep=0pt]
+%         (2pt, -16pt) rectangle ++ (\progressbar@tmpdim, \progressbar@pbht);
+%       \end{tikzpicture}%
     }
   } % end usebeamercolor{palette primary}
 }
@@ -172,7 +221,7 @@
 %}}}
 %{{{ --- Itemize ----------------------
 
-\setlength{\leftmargini}{1em}
+\setlength{\leftmargini}{1.5em}
 
 % Actually one level should be enough but ...
 \setlength{\leftmarginii}{1em}
@@ -180,7 +229,8 @@
 
 \newcommand{\itemBullet}{∙}
 
-\setbeamertemplate{itemize item}{\itemBullet}
+% \setbeamertemplate{itemize item}{\itemBullet}
+\setbeamertemplate{itemize item}[triangle]
 \setbeamertemplate{itemize subitem}{\itemBullet}
 \setbeamertemplate{itemize subsubitem}{\itemBullet}
 \setlength{\parskip}{0.5em}
@@ -192,7 +242,8 @@
 \AtBeginSection[]
 {
   \begingroup
-  \setbeamercolor{background canvas}{parent=palette primary}
+%   \setbeamercolor{background canvas}{parent=palette primary}
+  \setbeamercolor{background canvas}{bg=mDarkTeal}
   \begin{frame}[plain]
     \vspace{2em}\usebeamerfont{section title}
     \progressbar@sectionprogressbar%
@@ -222,7 +273,7 @@
 {%
   \parindent 0em\noindent%
   \raggedright
-  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\insertfootnotetext\par%
+  \usebeamercolor{footnote}\hbox to 0.8em{\hfil\insertfootnotemark}\hspace{1ex}\insertfootnotetext\par%
 }
 
 %}}}
@@ -294,7 +345,7 @@
 %{{{ Styles
 
 \pgfplotsset{
-  compat=1.9,
+%   compat=1.9,
   mbaseplot/.style={
     legend style={
       draw=none,
